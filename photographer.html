@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="build/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -12,8 +12,15 @@
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <div class="photograph-header flex justify-between w-full">
+        <div>
+          <h1></h1>
+          <p></p>
+        </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <div>
+          <img src="" alt="photo de">
+        </div>
       </div>
     </main>
     <div id="contact_modal">
@@ -32,5 +39,6 @@
 			</div>
 		</div>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
 </html>
