@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-useless-path-segments */
@@ -15,8 +16,26 @@ function displayData(photographers, photographerId) {
 
 function displayPhoto(photos, photographerId) {
 // eslint-disable-next-line max-len
-  const photoOfPhotographer = photos.find((photo) => photo.photographerId === parseInt(photographerId, 10));
-  console.log('photo', photoOfPhotographer);
+  const photoOfPhotographer = photos.filter((photo) => photo.photographerId === parseInt(photographerId, 10));
+  const test = photoOfPhotographer.filter((photo) => (photo.like.sort()));
+  console.log('photo test', test);
+  const container = document.querySelector('#photosContainer');
+  container.innerHTML = (
+    photoOfPhotographer.map((photo) => (
+      `
+      <div class="w-full">
+        <div>
+          <img src="assets/photographers/work/Mimi/${photo.image}" alt="photo of ${photo.title}" class="object-cover w-full h-96">
+        </div>
+      <div>
+        <p></p>
+        <div></div>
+      </div>
+    </div>
+        `
+    )).join('')
+
+  );
 }
 
 async function init() {

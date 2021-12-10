@@ -3,7 +3,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 // eslint-disable-next-line import/no-useless-path-segments
-import getPhotographers from './../utils/functions.js';
+import { getPhotographers } from './../utils/functions.js';
 
 function displayData(photographers) {
   const photographersSection = document.querySelector('.photographer_section');

@@ -14,4 +14,17 @@ async function getPhotos() {
   return data.media;
 }
 
-export { getPhotographers, getPhotos };
+function filterPhotos(photos, input) {
+  if (input === 'title') {
+    photos.sort();
+  } else if (input === 'famous') {
+    // photos.filter((photo) => {
+    //   photo.likes
+    // });
+    photos.filter((photo) => (photo.like.sort()));
+  } else {
+    return photos;
+  }
+  return photos;
+}
+export { getPhotographers, getPhotos, filterPhotos };
