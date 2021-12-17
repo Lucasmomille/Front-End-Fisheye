@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 // eslint-disable-next-line import/no-unresolved
 /* eslint-disable consistent-return */
-/* eslint-disable no-console */
 // eslint-disable-next-line import/no-useless-path-segments
 import { getPhotographers } from './../utils/functions.js';
 

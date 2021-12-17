@@ -74,3 +74,11 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+.dropdown-content {
+    background-color: #901C1C;
+}
+
+#photosContainer {
+    color: #901C1C;
+}

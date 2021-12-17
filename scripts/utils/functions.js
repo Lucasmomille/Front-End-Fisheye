@@ -14,17 +14,32 @@ async function getPhotos() {
   return data.media;
 }
 
+function compareLikes(a, b) {
+  return a.likes - b.likes;
+}
+function compareTitle(a, b) {
+  if (a.title < b.title) {
+    return -1;
+  }
+  if (a.title > b.title) {
+    return 1;
+  }
+  return 0;
+}
 function filterPhotos(photos, input) {
-  if (input === 'title') {
-    photos.sort();
-  } else if (input === 'famous') {
-    // photos.filter((photo) => {
-    //   photo.likes
-    // });
-    photos.filter((photo) => (photo.like.sort()));
+  if (input === 'Titre') {
+    photos.sort(compareTitle);
+  } else if (input === 'Popularité') {
+    photos.sort(compareLikes);
   } else {
     return photos;
   }
   return photos;
 }
-export { getPhotographers, getPhotos, filterPhotos };
+/* function chooseFilter(select) {
+  const option = select.options[select.selectedIndex].text;
+  console.log('option', option);
+} */
+export {
+  getPhotographers, getPhotos, filterPhotos, compareLikes, compareTitle,
+};

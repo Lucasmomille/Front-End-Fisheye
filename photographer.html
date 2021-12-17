@@ -9,7 +9,9 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header flex justify-between">
@@ -18,12 +20,20 @@
           <p></p>
         </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <div>
-          <img src="" alt="photo de">
+        <div class="w-40 h-40 rounded-full overflow-hidden">
+          <img src="" alt="" id="Photographer" class="img object-cover">
         </div>
       </div>
+      <div class="w-10/12 mx-auto flex items-center mb-6">
+        <label for="filter" class="font-bold mr-4">Trier par</label>
+        <select id="filters" class="dropdown-content text-white p-4">
+          <option value="popularité" selected>Popularité</option>
+          <option value="date" class="border-y-2 border-white">Date</option>
+          <option value="titre">Titre</option>
+        </select>
+        </div> 
+      </div>
       <div id="photosContainer" class="grid grid-cols-3 gap-4 w-10/12 mx-auto">
-        
       </div>
     </main>
     <div id="contact_modal">
@@ -41,6 +51,7 @@
 				</form>
 			</div>
 		</div>
+    <script src="./scripts/factories/Media.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>

@@ -31925,7 +31925,7 @@ h1 {
   font-size: 36px;
 }
 
-.photographer_section article a div {
+.photographer_section article a > div {
   display: inline-block;
   height: 200px;
   width: 200px;
