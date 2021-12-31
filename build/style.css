@@ -31895,9 +31895,13 @@ header {
   height: 90px;
 }
 
-h1 {
+.h1 {
   color: #901C1C;
   margin-right: 100px;
+}
+
+.h1-photographer {
+  color: #D3573C;
 }
 
 .logo {

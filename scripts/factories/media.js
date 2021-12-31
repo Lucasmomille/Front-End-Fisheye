@@ -1,8 +1,8 @@
+/* eslint-disable no-tabs */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-vars */
 function mediaFactory(data, photographer) {
   const container = document.querySelector('#photosContainer');
-  console.log('name', photographer);
   container.innerHTML = '';
   data.forEach((e) => {
     if (e.image) {
@@ -10,7 +10,9 @@ function mediaFactory(data, photographer) {
         `
           <div class="w-full">
             <div>
-              <img src="assets/photographers/work/${photographer}/${e.image}" alt="photo of ${e.title}" class="object-cover w-full h-96">
+              <a href="#" class="cursor-pointer">
+                <img src="assets/photographers/work/${photographer}/${e.image}" alt="photo of ${e.title}" class="object-cover w-full h-96">
+              </a>
             </div>
             <div class="flex justify-between">
               <p>${e.title}</p>
@@ -44,4 +46,30 @@ function mediaFactory(data, photographer) {
   });
 }
 
-export { mediaFactory };
+function header(photographer) {
+  const photographerInfo = document.getElementById('PhotographerInfo');
+  const imgPhotographer = document.getElementById('PhotographerImg');
+  const pricePhotographer = document.getElementById('PriceContainer');
+  photographerInfo.innerHTML = (
+    `
+			<h1 class="text-5xl mb-2 h1-photographer">${photographer.name}</h1>
+			<p>
+				<span class="text-xl mb-2">${photographer.city}, ${photographer.country}</span> <br>
+				<span class="">${photographer.tagline}</span>
+			</p>
+		`
+  );
+  imgPhotographer.innerHTML = (
+    `
+		  <img src="assets/photographers/id/${photographer.portrait}" alt="portrait de ${photographer.name} class="img object-cover""></img>
+	  `
+  );
+  pricePhotographer.innerHTML = (
+    `
+      <span></span>
+      <span>${photographer.price}€/jour</span>
+    `
+  );
+}
+
+export { mediaFactory, header };

@@ -9,7 +9,8 @@
 // Mettre le code JavaScript lié à la page photographer.html
 // eslint-disable-next-line import/extensions
 import { getPhotographers, getPhotos, compareLikes, compareTitle } from './../utils/functions.js';
-import { mediaFactory } from './../factories/media.js';
+import { header, mediaFactory } from './../factories/media.js';
+// import { header } from './../component/header';
 
 const filters = document.getElementById('filters');
 
@@ -59,9 +60,10 @@ async function init() {
   const photographer = photographerProperty(photographers, photographerId);
   const firstname = photographerName(photographer);
 
-  const imgPhotographer = document.getElementById('Photographer');
+  /* const imgPhotographer = document.getElementById('Photographer');
   imgPhotographer.setAttribute('src', `assets/photographers/id/${photographer.portrait}`);
-  imgPhotographer.setAttribute('alt', `photo de ${photographer.name}`);
+  imgPhotographer.setAttribute('alt', `photo de ${photographer.name}`); */
+  header(photographer);
   console.log('test', filters);
   // chooseFilter();
   displayPhoto(photos, photographerId, firstname);

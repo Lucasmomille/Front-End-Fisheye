@@ -1,5 +1,11 @@
 #contact_modal {
     display: none;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#PriceContainer {
+    background-color: #DB8876;
 }
 
 .photograph-header {

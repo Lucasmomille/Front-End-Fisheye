@@ -7,21 +7,18 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
-  <body>
+  <body class="relative">
     <header>
       <a href="/">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
       </a>
     </header>
     <main id="main">
-      <div class="photograph-header flex justify-between">
-        <div>
-          <h1></h1>
-          <p></p>
+      <div id="header" class="photograph-header flex justify-between items-center px-4">
+        <div id="PhotographerInfo" class="">
         </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <div class="w-40 h-40 rounded-full overflow-hidden">
-          <img src="" alt="" id="Photographer" class="img object-cover">
+        <div class="w-40 h-40 rounded-full overflow-hidden" id="PhotographerImg">
         </div>
       </div>
       <div class="w-10/12 mx-auto flex items-center mb-6">
@@ -35,23 +32,34 @@
       </div>
       <div id="photosContainer" class="grid grid-cols-3 gap-4 w-10/12 mx-auto">
       </div>
+      <div id="PriceContainer" class="bottom-0 right-12 sticky inline-block p-4 text-white font-bold rounded-t-md"></div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" class="absolute w-11/12 top-6">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form class="">
 					<div>
-						<label>Prénom</label>
+						<label for="Your firstname">Prénom</label>
 						<input />
+            <label for="Your name">Nom</label>
+						<input />
+            <label for="Your email">Email</label>
+						<input />
+            <label for="Your message">Votre message</label>
+						<textarea class="w-full p-2 text-gray-700"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <script src="./scripts/factories/Media.js"></script>
+    <div id="LightBox" class="absolute w-11/12 top-6">
+      <img src="assets/icons/close.svg" onclick="closeModal()" />
+
+    </div>
+    <script src="./scripts/factories/media.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
