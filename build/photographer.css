@@ -88,3 +88,7 @@ form input {
 #photosContainer {
     color: #901C1C;
 }
+
+.lightbox {
+    background-color: rgba(0,0,0, .8);
+}

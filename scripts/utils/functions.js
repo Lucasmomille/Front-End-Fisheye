@@ -15,14 +15,30 @@ async function getPhotos() {
 }
 
 function compareLikes(a, b) {
-  return a.likes - b.likes;
+  return b.likes - a.likes;
 }
 function compareTitle(a, b) {
-  if (a.title < b.title) {
-    return -1;
-  }
-  if (a.title > b.title) {
-    return 1;
+  if (!a.title && a.video) {
+    if (a.video < b.title) {
+      return -1;
+    }
+    if (a.video > b.title) {
+      return 1;
+    }
+  } else if (b.video && !b.title) {
+    if (a.title < b.video) {
+      return -1;
+    }
+    if (a.title > b.video) {
+      return 1;
+    }
+  } else {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
   }
   return 0;
 }
@@ -40,6 +56,11 @@ function filterPhotos(photos, input) {
   const option = select.options[select.selectedIndex].text;
   console.log('option', option);
 } */
+
+function sumLikes(photos) {
+  const likesArray = photos.map((photo) => photo.likes);
+  return likesArray.reduce((total, like) => total + like, 0);
+}
 export {
-  getPhotographers, getPhotos, filterPhotos, compareLikes, compareTitle,
+  getPhotographers, getPhotos, filterPhotos, compareLikes, compareTitle, sumLikes,
 };

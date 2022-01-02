@@ -7,3 +7,8 @@ function closeModal() {
   const modal = document.getElementById('contact_modal');
   modal.style.display = 'none';
 }
+
+function closeLightBox() {
+  const lightBox = document.getElementById('LightBox');
+  lightBox.classList.add('hidden');
+}

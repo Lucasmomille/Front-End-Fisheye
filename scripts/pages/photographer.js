@@ -8,16 +8,16 @@
 /* eslint-disable import/extensions */
 // Mettre le code JavaScript lié à la page photographer.html
 // eslint-disable-next-line import/extensions
-import { getPhotographers, getPhotos, compareLikes, compareTitle } from './../utils/functions.js';
-import { header, mediaFactory } from './../factories/media.js';
-// import { header } from './../component/header';
+import { getPhotographers, getPhotos, compareLikes, compareTitle, sumLikes } from './../utils/functions.js';
+import { openLightBox } from '../utils/lightBox.js';
+import { mediaFactory } from './../factories/media.js';
+import { header } from './../component/header.js';
 
 const filters = document.getElementById('filters');
 
 function chooseFilter(name) {
   filters.addEventListener('change', () => {
     const option = filters.options[filters.selectedIndex].text;
-    console.log('option', option);
     if (option === 'Titre') {
       mediaFactory();
     }
@@ -35,37 +35,33 @@ function photographerName(photographer) {
   // console.log('photograph', photographerSelect);
 }
 
-function displayPhoto(photos, photographerId, name) {
-  const photoOfPhotographer = photos.filter((photo) => photo.photographerId === parseInt(photographerId, 10));
-  const filterByLike = photoOfPhotographer.sort(compareLikes);
-  // const filterByTitle = photoOfPhotographer.sort(compareTitle);
-  // mediaFactory(filterByLike, name);
+function displayPhoto(photosOfPhotographer, name) {
+  const filterByLike = photosOfPhotographer.sort(compareLikes);
+  mediaFactory(filterByLike, name);
+  const imageBox = document.querySelectorAll('.box-image');
+  openLightBox(imageBox);
+
   filters.addEventListener('change', () => {
     const option = filters.options[filters.selectedIndex].text;
     if (option === 'Titre') {
-      mediaFactory(photoOfPhotographer.sort(compareTitle), name);
-      console.log('option1', option);
+      mediaFactory(photosOfPhotographer.sort(compareTitle), name);
     } else if (option === 'Popularité') {
-      console.log('optionpop', option);
-      mediaFactory(filterByLike, name);
+      mediaFactory(photosOfPhotographer.sort(compareLikes), name);
     }
   });
 }
 
 async function init() {
   const photographerId = new URL(window.location.href).searchParams.get('id');
-  // Récupère les datas des photographes
+  // Get photographer's dataS
   const photographers = await getPhotographers();
   const photos = await getPhotos();
   const photographer = photographerProperty(photographers, photographerId);
   const firstname = photographerName(photographer);
-
-  /* const imgPhotographer = document.getElementById('Photographer');
-  imgPhotographer.setAttribute('src', `assets/photographers/id/${photographer.portrait}`);
-  imgPhotographer.setAttribute('alt', `photo de ${photographer.name}`); */
-  header(photographer);
-  console.log('test', filters);
+  const photosOfPhotographer = photos.filter((photo) => photo.photographerId === parseInt(photographerId, 10));
+  const totalLikes = sumLikes(photosOfPhotographer);
+  header(photographer, totalLikes);
   // chooseFilter();
-  displayPhoto(photos, photographerId, firstname);
+  displayPhoto(photosOfPhotographer, firstname);
 }
 init();

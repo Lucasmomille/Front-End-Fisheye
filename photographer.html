@@ -13,7 +13,7 @@
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
       </a>
     </header>
-    <main id="main">
+    <main id="main" class="">
       <div id="header" class="photograph-header flex justify-between items-center px-4">
         <div id="PhotographerInfo" class="">
         </div>
@@ -24,21 +24,20 @@
       <div class="w-10/12 mx-auto flex items-center mb-6">
         <label for="filter" class="font-bold mr-4">Trier par</label>
         <select id="filters" class="dropdown-content text-white p-4">
-          <option value="popularité" selected>Popularité</option>
-          <option value="date" class="border-y-2 border-white">Date</option>
+          <option value="popularité"  class="border-b-2 border-white" selected>Popularité</option>
           <option value="titre">Titre</option>
         </select>
         </div> 
       </div>
       <div id="photosContainer" class="grid grid-cols-3 gap-4 w-10/12 mx-auto">
       </div>
-      <div id="PriceContainer" class="bottom-0 right-12 sticky inline-block p-4 text-white font-bold rounded-t-md"></div>
+      <div id="PriceContainer" class="bottom-0 right-0 fixed inline-block p-4 text-white font-bold rounded-t-md"></div>
     </main>
     <div id="contact_modal" class="absolute w-11/12 top-6">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" class="cursor-pointer"/>
         </header>
 				<form class="">
 					<div>
@@ -55,12 +54,18 @@
 				</form>
 			</div>
 		</div>
-    <div id="LightBox" class="absolute w-11/12 top-6">
-      <img src="assets/icons/close.svg" onclick="closeModal()" />
-
+    <div id="LightBox" class="lightbox absolute w-full top-0 left-0 hidden z-0 bottom-0 right-0 min-h-full">
+      <div class="w-10/12 absolute top-12 left-1/2 transform -translate-x-1/2 overflow-hidden">
+        <img src="assets/icons/close.svg" onclick="closeLightBox()" class="absolute top-12 right-12 z-40 cursor-pointer" />
+        <img src="" alt="photo" id="LightBoxImg" class="max-w-full z-20 object-cover">
+        
+        <img src="assets/icons/arrow-left.svg" onclick="" class="absolute z-40 cursor-pointer left-12 top-1/2 transform -translate-y-1/2 border-2 border-white" />
+        <img src="assets/icons/arrow-right.svg" onclick="" class="absolute z-40 cursor-pointer right-12 top-1/2 transform -translate-y-1/2 border-2 border-white" />
+      </div>
     </div>
-    <script src="./scripts/factories/media.js"></script>
+    <script src="/scripts/utils/lightBox.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/likes.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
 </html>
