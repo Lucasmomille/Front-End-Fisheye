@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="w-10/12 mx-auto flex items-center mb-6">
-        <label for="filter" class="font-bold mr-4">Trier par</label>
+        <label for="OrderBy" class="font-bold mr-4" id="OrderBy">Trier par</label>
         <select id="filters" class="dropdown-content text-white p-4">
           <option value="popularité"  class="border-b-2 border-white" selected>Popularité</option>
           <option value="titre">Titre</option>
@@ -33,34 +33,35 @@
       </div>
       <div id="PriceContainer" class="bottom-0 right-0 fixed inline-block p-4 text-white font-bold rounded-t-md"></div>
     </main>
+    <!-- add aria-label with name of photographer -->
     <div id="contact_modal" class="absolute w-11/12 top-6">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" class="cursor-pointer"/>
+          <h1>Contactez-moi</h1>
+          <img src="assets/icons/close.svg" alt="Close contact form" onclick="closeModal()" class="cursor-pointer"/>
         </header>
 				<form class="">
 					<div>
-						<label for="Your firstname">Prénom</label>
-						<input />
-            <label for="Your name">Nom</label>
-						<input />
-            <label for="Your email">Email</label>
-						<input />
-            <label for="Your message">Votre message</label>
-						<textarea class="w-full p-2 text-gray-700"></textarea>
+						<label for="Your firstname" id="Firstname">Prénom</label>
+						<input type="text" aria-labelledby="Firstname" />
+            <label for="Your name" id="Lastname">Nom</label>
+						<input type="text" aria-labelledby="Lastname" />
+            <label for="Your email" id="Email">Email</label>
+						<input type="text" aria-labelledby="Email" />
+            <label for="Your message" id="Message">Votre message</label>
+						<textarea class="w-full p-2 text-gray-700" aria-labelledby="Message"></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" >Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <div id="LightBox" class="lightbox absolute w-full top-0 left-0 hidden z-0 bottom-0 right-0 min-h-full">
-      <div class="w-10/12 absolute top-12 left-1/2 transform -translate-x-1/2 overflow-hidden">
-        <img src="assets/icons/close.svg" onclick="closeLightBox()" class="absolute top-12 right-12 z-40 cursor-pointer" />
-        <img src="" alt="photo" id="LightBoxImg" class="max-w-full z-20 object-cover">
+    <div id="LightBox" class="lightbox carousel-wrapper absolute w-full top-0 left-0 hidden z-0 bottom-0 right-0 min-h-full">
+      <div class="w-10/12 absolute top-12 left-1/2 transform -translate-x-1/2 overflow-hidden carousel">
+        <img src="assets/icons/close.svg" onclick="closeLightBox()" alt="close dialog" class="absolute top-12 right-12 z-40 cursor-pointer" />
+        <img src="" alt="" id="LightBoxImg" class="max-w-full z-20 object-cover">
         
-        <img src="assets/icons/arrow-left.svg" onclick="" class="absolute z-40 cursor-pointer left-12 top-1/2 transform -translate-y-1/2 border-2 border-white" />
-        <img src="assets/icons/arrow-right.svg" onclick="" class="absolute z-40 cursor-pointer right-12 top-1/2 transform -translate-y-1/2 border-2 border-white" />
+        <img src="assets/icons/arrow-left.svg" alt="Previous image" id="arrowLeft" class="absolute z-40 cursor-pointer left-12 top-1/2 transform -translate-y-1/2 border-2 border-white" />
+        <img src="assets/icons/arrow-right.svg" alt="Next image" id="arrowRight" class="absolute z-40 cursor-pointer right-12 top-1/2 transform -translate-y-1/2 border-2 border-white" />
       </div>
     </div>
     <script src="/scripts/utils/lightBox.js"></script>

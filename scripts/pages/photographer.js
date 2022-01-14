@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable object-curly-newline */
@@ -14,6 +16,8 @@ import { mediaFactory } from './../factories/media.js';
 import { header } from './../component/header.js';
 
 const filters = document.getElementById('filters');
+let mediaFiltered;
+const likeButton = document.getElementsByClassName('svg');
 
 function chooseFilter(name) {
   filters.addEventListener('change', () => {
@@ -38,6 +42,7 @@ function photographerName(photographer) {
 function displayPhoto(photosOfPhotographer, name) {
   const filterByLike = photosOfPhotographer.sort(compareLikes);
   mediaFactory(filterByLike, name);
+  mediaFiltered = filterByLike;
   const imageBox = document.querySelectorAll('.box-image');
   openLightBox(imageBox);
 
@@ -45,12 +50,20 @@ function displayPhoto(photosOfPhotographer, name) {
     const option = filters.options[filters.selectedIndex].text;
     if (option === 'Titre') {
       mediaFactory(photosOfPhotographer.sort(compareTitle), name);
+      mediaFiltered = photosOfPhotographer.sort(compareTitle);
     } else if (option === 'Popularité') {
       mediaFactory(photosOfPhotographer.sort(compareLikes), name);
+      mediaFiltered = photosOfPhotographer.sort(compareLikes);
     }
   });
 }
+document.getElementById('arrowLeft').addEventListener('click', () => {
+  console.log('click', mediaFiltered);
+});
 
+document.getElementById('OrderBy').addEventListener('click', () => {
+  console.log('likesbtn', likeButton);
+});
 async function init() {
   const photographerId = new URL(window.location.href).searchParams.get('id');
   // Get photographer's dataS
@@ -63,5 +76,13 @@ async function init() {
   header(photographer, totalLikes);
   // chooseFilter();
   displayPhoto(photosOfPhotographer, firstname);
+  console.log('likesbtn', likeButton);
+  for (let i = 0; i < likeButton.length; i++) {
+    likeButton[i].onclick = function () {
+      let numberOfLikes = +this.parentElement.children[0].innerText;
+      numberOfLikes += 1;
+      console.log('test', numberOfLikes += 1);
+    };
+  }
 }
 init();
