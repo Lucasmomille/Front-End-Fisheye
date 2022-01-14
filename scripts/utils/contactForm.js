@@ -10,10 +10,8 @@ function closeModal() {
 }
 
 function closeLightBox() {
+  const carousel = document.getElementById('Carousel');
   const lightBox = document.getElementById('LightBox');
+  carousel.removeChild(carousel.lastChild);
   lightBox.classList.add('hidden');
 }
-
-// know index of array filter
-// if left -1 if right +1
-// see what happen if 0 or last
