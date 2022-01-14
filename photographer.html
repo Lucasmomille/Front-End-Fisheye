@@ -34,20 +34,20 @@
       <div id="PriceContainer" class="bottom-0 right-0 fixed inline-block p-4 text-white font-bold rounded-t-md"></div>
     </main>
     <!-- add aria-label with name of photographer -->
-    <div id="contact_modal" class="absolute w-11/12 top-6">
+    <div id="contact_modal" class="absolute w-11/12 top-6" aria-labelledby="ContactTitle">
 			<div class="modal">
 				<header>
-          <h1>Contactez-moi</h1>
+          <h1 id="ContactTitle"></h1>
           <img src="assets/icons/close.svg" alt="Close contact form" onclick="closeModal()" class="cursor-pointer"/>
         </header>
 				<form class="">
 					<div>
 						<label for="Your firstname" id="Firstname">Prénom</label>
-						<input type="text" aria-labelledby="Firstname" />
+						<input type="text" value="" class="p-2" name="Firstname"/>
             <label for="Your name" id="Lastname">Nom</label>
-						<input type="text" aria-labelledby="Lastname" />
+						<input type="text" value="" class="p-2" aria-labelledby="Lastname" />
             <label for="Your email" id="Email">Email</label>
-						<input type="text" aria-labelledby="Email" />
+						<input type="text" value="" class="p-2" aria-labelledby="Email" />
             <label for="Your message" id="Message">Votre message</label>
 						<textarea class="w-full p-2 text-gray-700" aria-labelledby="Message"></textarea>
 					</div>
@@ -66,7 +66,6 @@
     </div>
     <script src="/scripts/utils/lightBox.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/likes.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

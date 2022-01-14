@@ -4,6 +4,7 @@ function header(photographer, totalLikes) {
   const photographerInfo = document.getElementById('PhotographerInfo');
   const imgPhotographer = document.getElementById('PhotographerImg');
   const pricePhotographer = document.getElementById('PriceContainer');
+  const contactName = document.getElementById('ContactTitle');
   photographerInfo.innerHTML = (
     `
 			<h1 class="text-5xl mb-2 h1-photographer">${photographer.name}</h1>
@@ -20,8 +21,13 @@ function header(photographer, totalLikes) {
   );
   pricePhotographer.innerHTML = (
     `
-      <span>${totalLikes} ic</span>
+      <span id="TotalLikes">${totalLikes}</span> <span>ic</span>
       <span>${photographer.price}€/jour</span>
+    `
+  );
+  contactName.innerHTML = (
+    `
+    Contactez-moi ${photographer.name}
     `
   );
 }

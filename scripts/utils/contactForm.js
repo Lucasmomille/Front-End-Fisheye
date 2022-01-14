@@ -13,7 +13,3 @@ function closeLightBox() {
   const lightBox = document.getElementById('LightBox');
   lightBox.classList.add('hidden');
 }
-
-// know index of array filter
-// if left -1 if right +1
-// see what happen if 0 or last
