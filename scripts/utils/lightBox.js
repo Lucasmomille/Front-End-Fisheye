@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable quotes */
 /* eslint-disable no-loop-func */
 /* eslint-disable no-param-reassign */
@@ -5,6 +6,8 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
+import { displayImageLightBox, displayVideoLightBox } from "./functions.js";
+
 const lightBox = document.getElementById('LightBox');
 let currentIndex = 0;
 
@@ -15,9 +18,8 @@ function openLightBox(images) {
       lightBox.classList.remove('hidden');
       const imgSrc = this.querySelector('img').src;
       const imgAlt = this.querySelector('img').alt;
-      carousel.insertAdjacentHTML('beforeend', `<img src="${imgSrc}" alt="${imgAlt}" id="LightBoxImg" class="max-w-full z-20 object-cover">`);
+      carousel.insertAdjacentHTML('beforeend', displayImageLightBox(imgSrc, imgAlt));
       currentIndex = i;
-      // console.log('image', image[i + 1]);
     };
   }
 }
@@ -26,58 +28,39 @@ const closeLightBox = document.getElementById('CloseLightBox');
 
 closeLightBox.addEventListener('click', () => {
   const carousel = document.getElementById('Carousel');
-  carousel.removeChild(carousel.lastChild);
+  carousel.removeChild(carousel.lastElementChild);
   lightBox.classList.add('hidden');
 });
 
 function slideImage(images) {
   const carousel = document.getElementById('Carousel');
   document.getElementById('arrowLeft').addEventListener('click', () => {
-    carousel.removeChild(carousel.lastChild);
-    console.log('carousel', images);
+    carousel.removeChild(carousel.lastElementChild);
     if (images[currentIndex - 1].firstElementChild.tagName === 'VIDEO') {
       console.log('video it is');
       const videoSrc = images[currentIndex - 1].querySelector('video').firstElementChild.src;
-      const videoAlt = images[currentIndex - 1].querySelector('video').firstElementChild.alt;
-      carousel.insertAdjacentHTML(
-        'beforeend',
-        `<video controls width="1150" class="object-cover max-w-full z-20 mx-auto">
-          <source src="${videoSrc}"
-            alt="${videoAlt}" 
-            type="video/mp4"
-          >
-          Sorry, your browser doesn't support embedded videos.
-        </video>`,
-      );
+      const videoAlt = images[currentIndex - 1].querySelector('video').firstElementChild.getAttribute('alt');
+      carousel.insertAdjacentHTML('beforeend', displayVideoLightBox(videoSrc, videoAlt));
       currentIndex -= 1;
     } else {
       const imgSrc = images[currentIndex - 1].querySelector('img').src;
       const imgAlt = images[currentIndex - 1].querySelector('img').alt;
-      carousel.insertAdjacentHTML('beforeend', `<img src="${imgSrc}" alt="${imgAlt}" id="LightBoxImg" class="max-w-full z-20 object-cover">`);
+      carousel.insertAdjacentHTML('beforeend', displayImageLightBox(imgSrc, imgAlt));
       currentIndex -= 1;
     }
   });
   document.getElementById('arrowRight').addEventListener('click', () => {
-    carousel.removeChild(carousel.lastChild);
+    carousel.removeChild(carousel.lastElementChild);
     if (images[currentIndex + 1].firstElementChild.tagName === 'VIDEO') {
       console.log('video it is');
       const videoSrc = images[currentIndex + 1].querySelector('video').firstElementChild.src;
-      const videoAlt = images[currentIndex + 1].querySelector('video').firstElementChild.alt;
-      carousel.insertAdjacentHTML(
-        'beforeend',
-        `<video controls width="1150" class="object-cover max-w-full z-20 mx-auto">
-          <source src="${videoSrc}"
-            alt="${videoAlt}" 
-            type="video/mp4"
-          >
-          Sorry, your browser doesn't support embedded videos.
-        </video>`,
-      );
+      const videoAlt = images[currentIndex + 1].querySelector('video').firstElementChild.getAttribute('alt');
+      carousel.insertAdjacentHTML('beforeend', displayVideoLightBox(videoSrc, videoAlt));
       currentIndex += 1;
     } else {
       const imgSrc = images[currentIndex + 1].querySelector('img').src;
       const imgAlt = images[currentIndex + 1].querySelector('img').alt;
-      carousel.insertAdjacentHTML('beforeend', `<img src="${imgSrc}" alt="${imgAlt}" id="LightBoxImg" class="max-w-full z-20 object-cover">`);
+      carousel.insertAdjacentHTML('beforeend', displayImageLightBox(imgSrc, imgAlt));
       // console.log('img', images[currentIndex += 1]);
       currentIndex += 1;
     }

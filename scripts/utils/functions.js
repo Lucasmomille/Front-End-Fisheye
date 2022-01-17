@@ -61,6 +61,30 @@ function sumLikes(photos) {
   const likesArray = photos.map((photo) => photo.likes);
   return likesArray.reduce((total, like) => total + like, 0);
 }
+
+function displayImageLightBox(src, alt) {
+  return `
+    <figure class="max-w-full z-20">
+      <img src="${src}" alt="${alt}" id="LightBoxImg" class="max-w-full z-20 object-cover">
+      <figcaption class="w-6/12 mx-auto">${alt}</figcaption>
+    </figure>
+  `;
+}
+
+function displayVideoLightBox(src, alt) {
+  return `
+  <div class="w-full mx-auto z-20">
+    <video controls width="1150" class="object-cover max-w-full z-20 mx-auto">
+      <source src="${src}"
+        alt="${alt}" 
+        type="video/mp4"
+      >
+      Sorry, your browser doesn't support embedded videos.
+    </video>
+    <p class="w-6/12 mx-auto">${alt}</p>
+  </div>`;
+}
+
 export {
-  getPhotographers, getPhotos, filterPhotos, compareLikes, compareTitle, sumLikes,
+  getPhotographers, getPhotos, filterPhotos, compareLikes, compareTitle, sumLikes, displayImageLightBox, displayVideoLightBox,
 };
