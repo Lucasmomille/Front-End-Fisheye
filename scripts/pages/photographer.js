@@ -35,23 +35,24 @@ function displayPhoto(photosOfPhotographer, name) {
   mediaFactory(filterByLike, name);
   mediaFiltered = filterByLike;
   let imageBox = document.querySelectorAll('.box-image');
-  openLightBox(imageBox);
-  slideImage(imageBox);
+  console.log('box1', imageBox);
+  // slideImage(imageBox);
 
   filters.addEventListener('change', () => {
     const option = filters.options[filters.selectedIndex].text;
     if (option === 'Titre') {
       mediaFactory(photosOfPhotographer.sort(compareTitle), name);
       imageBox = document.querySelectorAll('.box-image');
-      openLightBox(imageBox);
-      slideImage(imageBox);
+      console.log('boxtitle', imageBox);
     } else if (option === 'Popularité') {
       mediaFactory(photosOfPhotographer.sort(compareLikes), name);
       imageBox = document.querySelectorAll('.box-image');
-      openLightBox(imageBox);
-      slideImage(imageBox);
+      console.log('boxlike', imageBox);
     }
+    openLightBox(imageBox);
   });
+  openLightBox(imageBox);
+  slideImage(imageBox);
 }
 
 async function init() {

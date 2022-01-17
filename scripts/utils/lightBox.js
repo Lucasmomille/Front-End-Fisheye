@@ -6,7 +6,6 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 const lightBox = document.getElementById('LightBox');
-const lightBoxImg = document.getElementById('LightBoxImg');
 let currentIndex = 0;
 
 function openLightBox(images) {
@@ -17,18 +16,25 @@ function openLightBox(images) {
       const imgSrc = this.querySelector('img').src;
       const imgAlt = this.querySelector('img').alt;
       carousel.insertAdjacentHTML('beforeend', `<img src="${imgSrc}" alt="${imgAlt}" id="LightBoxImg" class="max-w-full z-20 object-cover">`);
-      /* lightBoxImg.src = imgSrc;
-      lightBoxImg.alt = imgAlt; */
       currentIndex = i;
       // console.log('image', image[i + 1]);
     };
   }
 }
+
+const closeLightBox = document.getElementById('CloseLightBox');
+
+closeLightBox.addEventListener('click', () => {
+  const carousel = document.getElementById('Carousel');
+  carousel.removeChild(carousel.lastChild);
+  lightBox.classList.add('hidden');
+});
+
 function slideImage(images) {
   const carousel = document.getElementById('Carousel');
-  // carousel.insertAdjacentHTML('afterend', '<div id="two">two</div>');
   document.getElementById('arrowLeft').addEventListener('click', () => {
     carousel.removeChild(carousel.lastChild);
+    console.log('carousel', images);
     if (images[currentIndex - 1].firstElementChild.tagName === 'VIDEO') {
       console.log('video it is');
       const videoSrc = images[currentIndex - 1].querySelector('video').firstElementChild.src;

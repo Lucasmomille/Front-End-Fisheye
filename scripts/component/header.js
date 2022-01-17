@@ -16,7 +16,7 @@ function header(photographer, totalLikes) {
   );
   imgPhotographer.innerHTML = (
     `
-		  <img src="assets/photographers/id/${photographer.portrait}" alt="portrait de ${photographer.name} class="img object-cover"></img>
+		  <img src="assets/photographers/id/${photographer.portrait}" alt="portrait de ${photographer.name}" class="img object-cover"></img>
 	  `
   );
   pricePhotographer.innerHTML = (
