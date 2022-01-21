@@ -124,3 +124,7 @@ form input {
 .closeBox {
     color: #901C1C;
 }
+
+:focus {
+    border: solid 3px red;
+}

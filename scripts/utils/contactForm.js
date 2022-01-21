@@ -1,5 +1,4 @@
 /* eslint-disable func-names */
-/* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-unused-vars */
 function displayModal() {
   const modal = document.getElementById('contact_modal');
@@ -19,7 +18,7 @@ const infoContact = {
   message: '',
 };
 
-inputs.addEventListener('change', function (e) {
+inputs.addEventListener('change', (e) => {
   switch (e.target.name) {
     case 'Firstname':
       infoContact.firstname = e.target.value;
@@ -38,8 +37,23 @@ inputs.addEventListener('change', function (e) {
   }
 });
 
+const validateEmail = () => {
+  // eslint-disable-next-line no-useless-escape
+  const validEmailAdress = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const email = document.getElementById('EmailInput');
+  if (validEmailAdress.test(email.value.toLowerCase())) {
+    return true;
+  }
+  return false;
+};
+
 const submitButton = document.getElementById('Submit');
 submitButton.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log('info', infoContact);
+  validateEmail();
+  if (validateEmail() === true) {
+    console.log('info', infoContact);
+  } else {
+    console.log('wrong email');
+  }
 });

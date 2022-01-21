@@ -1,11 +1,7 @@
-/* eslint-disable import/extensions */
 /* eslint-disable import/no-useless-path-segments */
-/* eslint-disable no-plusplus */
 /* eslint-disable prefer-destructuring */
-/* eslint-disable no-tabs */
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-unused-vars */
-import { Image } from '../utils/imageClass.js';
+import Image from '../utils/imageClass.js';
 import Video from '../utils/videoClass.js';
 
 function mediaFactory(data, photographer) {

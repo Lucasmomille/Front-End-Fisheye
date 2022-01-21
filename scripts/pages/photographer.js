@@ -1,15 +1,6 @@
-/* eslint-disable func-names */
-/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable object-curly-newline */
-/* eslint-disable no-console */
-/* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-useless-path-segments */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable import/extensions */
-// Mettre le code JavaScript lié à la page photographer.html
-// eslint-disable-next-line import/extensions
 import { getPhotographers, getPhotos, compareLikes, compareTitle, sumLikes } from './../utils/functions.js';
 import { openLightBox, slideImage } from '../utils/lightBox.js';
 import { mediaFactory } from './../factories/media.js';
@@ -19,40 +10,39 @@ import { incrementLikes } from '../utils/likes.js';
 const filters = document.getElementById('filters');
 let mediaFiltered;
 
+// accessibility with keypress enter
+document.addEventListener('keypress', (e) => {
+  const eventClick = new Event('click');
+  if (e.key === 'Enter') {
+    e.target.dispatchEvent(eventClick);
+  }
+});
+
 function photographerProperty(photographers, photographerId) {
   // eslint-disable-next-line max-len
   return photographers.find((elt) => elt.id === parseInt(photographerId, 10));
 }
 
 function photographerName(photographer) {
-  // eslint-disable-next-line max-len
   return photographer.name.split(' ')[0];
-  // console.log('photograph', photographerSelect);
 }
 
 function displayPhoto(photosOfPhotographer, name) {
   const filterByLike = photosOfPhotographer.sort(compareLikes);
   mediaFactory(filterByLike, name);
   mediaFiltered = filterByLike;
-  let imageBox = document.querySelectorAll('.box-image');
-  console.log('box1', imageBox);
-  // slideImage(imageBox);
 
   filters.addEventListener('change', () => {
     const option = filters.options[filters.selectedIndex].text;
     if (option === 'Titre') {
       mediaFactory(photosOfPhotographer.sort(compareTitle), name);
-      imageBox = document.querySelectorAll('.box-image');
-      console.log('boxtitle', imageBox);
     } else if (option === 'Popularité') {
       mediaFactory(photosOfPhotographer.sort(compareLikes), name);
-      imageBox = document.querySelectorAll('.box-image');
-      console.log('boxlike', imageBox);
     }
-    openLightBox(imageBox);
+    openLightBox();
   });
-  openLightBox(imageBox);
-  slideImage(imageBox);
+  openLightBox();
+  slideImage();
 }
 
 async function init() {

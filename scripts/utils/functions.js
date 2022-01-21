@@ -1,16 +1,12 @@
 async function getPhotographers() {
-  // Penser à remplacer par les données récupérées dans le json
   const response = await fetch('./../scripts/data/photographers.json');
   const data = await response.json();
-  // et bien retourner le tableau photographers seulement une fois
   return data.photographers;
 }
 
 async function getPhotos() {
-  // Penser à remplacer par les données récupérées dans le json
   const response = await fetch('./../scripts/data/photographers.json');
   const data = await response.json();
-  // et bien retourner le tableau photographers seulement une fois
   return data.media;
 }
 
@@ -52,10 +48,6 @@ function filterPhotos(photos, input) {
   }
   return photos;
 }
-/* function chooseFilter(select) {
-  const option = select.options[select.selectedIndex].text;
-  console.log('option', option);
-} */
 
 function sumLikes(photos) {
   const likesArray = photos.map((photo) => photo.likes);
