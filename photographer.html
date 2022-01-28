@@ -11,22 +11,22 @@
   </head>
   <body class="relative pb-6">
     <header>
-      <a href="/">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
+      <a href="/" aria-label="retour vers la page d'accueil">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye page d'accueil" />
       </a>
     </header>
     <main id="main" class="">
       <div id="header" class="photograph-header flex justify-between items-center px-4">
         <div id="PhotographerInfo" class="">
         </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" id="contactForm">Contactez-moi</button>
         <div class="w-40 h-40 rounded-full overflow-hidden" id="PhotographerImg">
         </div>
       </div>
       <div class="w-10/12 mx-auto flex items-center mb-6">
-        <label for="OrderBy" class="font-bold mr-4" id="OrderBy">Trier par</label>
-        <select id="filters" class="dropdown-content text-white p-4">
-          <option value="popularité"  class="border-b-2 border-white" selected>Popularité</option>
+        <label for="OrderBy" class="font-bold mr-4">Trier par</label>
+        <select id="filters" class="dropdown-content text-white p-4 rounded-sm" id="OrderBy">
+          <option value="popularité" selected>Popularité</option>
           <option value="titre">Titre</option>
         </select>
         </div> 
@@ -35,37 +35,37 @@
       </div>
       <div id="PriceContainer" class="bottom-0 right-0 fixed flex p-4 text-black font-bold rounded-t-md"></div>
     </main>
-    <!-- add aria-label with name of photographer -->
     <div id="contact_modal" class="absolute w-11/12 top-6" aria-labelledby="ContactTitle">
 			<div class="modal">
 				<header>
           <h1 id="ContactTitle"></h1>
-          <img src="assets/icons/close.svg" role="button" tabindex="1" alt="Close contact form" onclick="closeModal()" class="cursor-pointer"/>
+          <img src="assets/icons/close.svg" role="button" tabindex="0" alt="fermer le formulaire de contact" id="CloseForm" class="cursor-pointer"/>
         </header>
 				<form class="">
 					<div id="Inputs">
-						<label for="Your firstname" id="Firstname">Prénom</label>
-						<input type="text" value="" class="p-2" name="Firstname"/>
-            <label for="Your name" id="Lastname">Nom</label>
-						<input type="text" value="" class="p-2" name="Lastname" />
-            <label for="Your email" id="Email">Email</label>
-						<input type="text" value="" class="p-2" name="Email" id="EmailInput" />
-            <label for="Your message" id="Message">Votre message</label>
-						<textarea class="w-full p-2 text-gray-700" name="Message"></textarea>
+						<label for="Prenom">Prénom</label>
+						<input type="text" value="" class="p-2" name="Firstname" id="Prenom"/>
+            <label for="Nom">Nom</label>
+						<input type="text" value="" class="p-2" name="Lastname" id="Nom" />
+            <label for="Email">Email</label>
+						<input type="text" value="" class="p-2" name="Email" id="Email" />
+            <small class="text-red-600 hidden" id="errorEmail">Email invalide</small>
+            <label for="Message">Votre message</label>
+						<textarea class="w-full p-2 text-gray-700" name="Message" id="Message"></textarea>
 					</div>
-          <button class="contact_button" id="Submit">Envoyer</button>
+          <button class="contact_button" aria-label="envoyer le formulaire" id="Submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <div id="LightBox" class="lightbox carousel-wrapper absolute w-full top-0 left-0 hidden z-0 bottom-0 right-0 min-h-full">
       <div class="w-10/12 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden carousel" id="Carousel">
-        <img src="assets/icons/closeBox.svg" role="button" tabindex="1" id="CloseLightBox" alt="close dialog" class="closeBox absolute top-12 right-12 z-40 cursor-pointer" />        
-        <img src="assets/icons/btnPrevious.svg" alt="Previous image" role="button" tabindex="1" id="btnPrevious" class="absolute z-40 cursor-pointer left-12 top-1/2 transform -translate-y-1/2" />
-        <img src="assets/icons/btnNext.svg" alt="Next image" role="button" tabindex="1" id="btnNext" class="absolute z-40 cursor-pointer right-12 top-1/2 transform -translate-y-1/2" />
+        <img src="assets/icons/closeBox.svg" role="button" tabindex="1" id="CloseLightBox" alt="fermer la modale" class="closeBox absolute top-12 right-12 z-40 cursor-pointer" />        
+        <img src="assets/icons/btnPrevious.svg" alt="image précédente" role="button" tabindex="1" id="btnPrevious" class="absolute z-40 cursor-pointer left-12 top-1/2 transform -translate-y-1/2" />
+        <img src="assets/icons/btnNext.svg" alt="image suivante" role="button" tabindex="1" id="btnNext" class="absolute z-40 cursor-pointer right-12 top-1/2 transform -translate-y-1/2" />
       </div>
     </div>
     <script src="/scripts/utils/lightBox.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/utils/contactForm.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

@@ -8,12 +8,12 @@ import { header } from './../component/header.js';
 import { incrementLikes } from '../utils/likes.js';
 
 const filters = document.getElementById('filters');
-let mediaFiltered;
 
 // accessibility with keypress enter
-document.addEventListener('keypress', (e) => {
+document.addEventListener('keydown', (e) => {
   const eventClick = new Event('click');
   if (e.key === 'Enter') {
+    e.preventDefault();
     e.target.dispatchEvent(eventClick);
   }
 });
@@ -30,7 +30,7 @@ function photographerName(photographer) {
 function displayPhoto(photosOfPhotographer, name) {
   const filterByLike = photosOfPhotographer.sort(compareLikes);
   mediaFactory(filterByLike, name);
-  mediaFiltered = filterByLike;
+  const mediaFiltered = filterByLike;
 
   filters.addEventListener('change', () => {
     const option = filters.options[filters.selectedIndex].text;
@@ -40,9 +40,11 @@ function displayPhoto(photosOfPhotographer, name) {
       mediaFactory(photosOfPhotographer.sort(compareLikes), name);
     }
     openLightBox();
+    incrementLikes();
   });
   openLightBox();
   slideImage();
+  incrementLikes();
 }
 
 async function init() {
@@ -57,6 +59,5 @@ async function init() {
 
   header(photographer, totalLikes);
   displayPhoto(photosOfPhotographer, firstname);
-  incrementLikes();
 }
 init();

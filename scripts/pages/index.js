@@ -3,12 +3,12 @@
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-useless-path-segments
 import { getPhotographers } from './../utils/functions.js';
+import { photographerFactory } from '../factories/photographer.js';
 
 function displayData(photographers) {
   const photographersSection = document.querySelector('.photographer_section');
 
   photographers.forEach((photographer) => {
-    // eslint-disable-next-line no-undef
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);

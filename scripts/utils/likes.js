@@ -8,11 +8,16 @@ function incrementLikes() {
     likeButton[i].onclick = function () {
       let numberOfLikes = +this.parentElement.children[0].innerText;
       let numberTotalLikes = +totalLikes.innerText;
-
-      numberOfLikes += 1;
+      if (!this.dataset.liked || this.dataset.liked === 'false') {
+        numberOfLikes += 1;
+        numberTotalLikes += 1;
+        this.dataset.liked = true;
+      } else {
+        numberOfLikes -= 1;
+        numberTotalLikes -= 1;
+        this.dataset.liked = false;
+      }
       this.parentElement.children[0].innerText = numberOfLikes;
-
-      numberTotalLikes += 1;
       totalLikes.innerText = numberTotalLikes;
     };
   }

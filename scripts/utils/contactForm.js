@@ -1,16 +1,25 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
-function displayModal() {
-  const modal = document.getElementById('contact_modal');
-  modal.style.display = 'block';
-}
+import { trapInsideModal } from './trapFocusModal.js';
 
-function closeModal() {
-  const modal = document.getElementById('contact_modal');
-  modal.style.display = 'none';
-}
-
+const modal = document.getElementById('contact_modal');
+const openModal = document.getElementById('contactForm');
+const closeModal = document.getElementById('CloseForm');
 const inputs = document.getElementById('Inputs');
+const errorEmail = document.getElementById('errorEmail');
+
+const focusableElements = 'input, button, textarea, [id="CloseForm"]';
+const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+
+openModal.addEventListener('click', () => {
+  modal.style.display = 'block';
+  firstFocusableElement.focus();
+  trapInsideModal(modal, firstFocusableElement, focusableElements);
+});
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
 const infoContact = {
   firstname: '',
   lastname: '',
@@ -40,7 +49,7 @@ inputs.addEventListener('change', (e) => {
 const validateEmail = () => {
   // eslint-disable-next-line no-useless-escape
   const validEmailAdress = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const email = document.getElementById('EmailInput');
+  const email = document.getElementById('Email');
   if (validEmailAdress.test(email.value.toLowerCase())) {
     return true;
   }
@@ -53,7 +62,11 @@ submitButton.addEventListener('click', (e) => {
   validateEmail();
   if (validateEmail() === true) {
     console.log('info', infoContact);
+    if (errorEmail.classList.value !== 'hidden') {
+      errorEmail.classList.add('hidden');
+    }
   } else {
     console.log('wrong email');
+    errorEmail.classList.remove('hidden');
   }
 });

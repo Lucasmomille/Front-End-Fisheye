@@ -13,6 +13,7 @@ async function getPhotos() {
 function compareLikes(a, b) {
   return b.likes - a.likes;
 }
+
 function compareTitle(a, b) {
   if (!a.title && a.video) {
     if (a.video < b.title) {

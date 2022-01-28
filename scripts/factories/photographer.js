@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line no-unused-vars
 function photographerFactory(data) {
   const {
@@ -22,6 +23,7 @@ function photographerFactory(data) {
     img.setAttribute('src', picture);
     img.setAttribute('alt', altDescription);
     link.setAttribute('href', href);
+    link.setAttribute('aria-labelledby', `lien vers la page de ${name}`);
 
     h2.textContent = name;
     photographerLocation.textContent = `${city}, ${country}`;
@@ -44,3 +46,4 @@ function photographerFactory(data) {
   }
   return { name, picture, getUserCardDOM };
 }
+export { photographerFactory };
