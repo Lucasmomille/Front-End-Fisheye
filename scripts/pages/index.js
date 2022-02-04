@@ -15,8 +15,8 @@ function displayData(photographers) {
   });
 }
 
-async function init() {
-  // Récupère les datas des photographes
+async function init() { // On load display data
+  // Get photographer's data
   const photographers = await getPhotographers();
   displayData(photographers);
 }

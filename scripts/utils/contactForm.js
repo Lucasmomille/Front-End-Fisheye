@@ -11,11 +11,13 @@ const errorEmail = document.getElementById('errorEmail');
 const focusableElements = 'input, button, textarea, [id="CloseForm"]';
 const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
 
+// Open form's modal on click
 openModal.addEventListener('click', () => {
   modal.style.display = 'block';
   firstFocusableElement.focus();
   trapInsideModal(modal, firstFocusableElement, focusableElements);
 });
+// Close form's modal on click
 closeModal.addEventListener('click', () => {
   modal.style.display = 'none';
 });
@@ -27,6 +29,7 @@ const infoContact = {
   message: '',
 };
 
+// get input value when on change and put it in infoContact object
 inputs.addEventListener('change', (e) => {
   switch (e.target.name) {
     case 'Firstname':
@@ -46,6 +49,7 @@ inputs.addEventListener('change', (e) => {
   }
 });
 
+// check if email is valid or not
 const validateEmail = () => {
   // eslint-disable-next-line no-useless-escape
   const validEmailAdress = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -56,6 +60,7 @@ const validateEmail = () => {
   return false;
 };
 
+// Send data on click
 const submitButton = document.getElementById('Submit');
 submitButton.addEventListener('click', (e) => {
   e.preventDefault();

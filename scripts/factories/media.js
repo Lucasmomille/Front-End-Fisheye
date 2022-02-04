@@ -4,6 +4,7 @@
 import Image from '../utils/imageClass.js';
 import Video from '../utils/videoClass.js';
 
+// Create html for each data of photographer
 function mediaFactory(data, photographer) {
   const container = document.querySelector('#photosContainer');
   container.innerHTML = '';

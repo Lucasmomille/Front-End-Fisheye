@@ -18,21 +18,20 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-function photographerProperty(photographers, photographerId) {
+function photographerProperty(photographers, photographerId) { // get photographer with their id
   // eslint-disable-next-line max-len
   return photographers.find((elt) => elt.id === parseInt(photographerId, 10));
 }
 
-function photographerName(photographer) {
+function photographerName(photographer) { // get photographer firstname
   return photographer.name.split(' ')[0];
 }
 
-function displayPhoto(photosOfPhotographer, name) {
+function displayPhoto(photosOfPhotographer, name) { // display media with their factory and call
   const filterByLike = photosOfPhotographer.sort(compareLikes);
   mediaFactory(filterByLike, name);
-  const mediaFiltered = filterByLike;
 
-  filters.addEventListener('change', () => {
+  filters.addEventListener('change', () => { // on change with select to order by popularity or title, reload media ordered
     const option = filters.options[filters.selectedIndex].text;
     if (option === 'Titre') {
       mediaFactory(photosOfPhotographer.sort(compareTitle), name);
@@ -47,7 +46,7 @@ function displayPhoto(photosOfPhotographer, name) {
   incrementLikes();
 }
 
-async function init() {
+async function init() { // on load get photographer's data and load their media
   const photographerId = new URL(window.location.href).searchParams.get('id');
   // Get photographer's datas
   const photographers = await getPhotographers();
